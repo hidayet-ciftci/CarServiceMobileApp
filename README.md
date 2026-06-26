@@ -1,83 +1,389 @@
-**Car Rental Solution**
+# 🚗 Car Rental Solution
 
-Bu depo iki ana proje içerir: mobil/uygulama arayüzü (frontend) ve katmanlı mimaride yazılmış ASP.NET Core Web API (backend). Aşağıda her iki projeyi, kullanılan teknolojileri, nasıl çalıştırılacağını ve önemli dosya/konfigürasyon noktalarını bulabilirsiniz.
+<p align="center">
+  <strong>A full-stack car rental management system built with ASP.NET Core Web API and React Native (Expo).</strong>
+</p>
 
-**Projects**
+<p align="center">
 
-- **Frontend (Mobil/Expo)**: [CarRental-FE](CarRental-FE) — React Native + Expo ile hazırlanmış TypeScript tabanlı uygulama. Temel bağımlılıklar ve sürümler için bakınız: [CarRental-FE/package.json](CarRental-FE/package.json#L1-L80).
-- **Backend (Web API)**: [CarRentalProject/WebApi](CarRentalProject/WebApi) — ASP.NET Core Web API (katmanlı mimari: Business, Core, DataAccess, Entities). Proje dosyası ve NuGet paketleri: [CarRentalProject/WebApi/WebAPI.csproj](CarRentalProject/WebApi/WebAPI.csproj#L1-L80).
+![.NET](https://img.shields.io/badge/.NET-6-blueviolet)
+![C#](https://img.shields.io/badge/C%23-Backend-green)
+![React Native](https://img.shields.io/badge/React_Native-Mobile-blue)
+![Expo](https://img.shields.io/badge/Expo-SDK54-black)
+![SQL Server](https://img.shields.io/badge/SQL_Server-Database-red)
+![License](https://img.shields.io/badge/License-Portfolio-success)
 
-**Teknolojiler ve Kütüphaneler**
+</p>
 
-- **Backend:**
-  - **Platform:** `ASP.NET Core` (`net6.0`).
-  - **Dil:** `C#`.
-  - **Paketler:** `Hangfire` (arka plan işleri), `Hangfire.PostgreSql`, `Microsoft.AspNetCore.Authentication.JwtBearer` (JWT auth), `Microsoft.Data.SqlClient` (SQL Server istemcisi), `Serilog` (loglama), `Swashbuckle`/`Swagger` (API dokümantasyonu). (Detaylar: [CarRentalProject/WebApi/WebAPI.csproj](CarRentalProject/WebApi/WebAPI.csproj#L1-L80)).
-  - **Mimari:** Ayrılmış katmanlar — `Business`, `Core`, `DataAccess`, `Entities`.
+---
 
-- **Frontend:**
-  - **Platform:** `Expo` (Expo SDK ~54) + `expo-router`.
-  - **Kütüphaneler:** `react` (v19), `react-native` (v0.81.5), `@reduxjs/toolkit`, `react-redux`, `axios`, `react-native-paper`, `expo-*` paketleri. (Detaylar: [CarRental-FE/package.json](CarRental-FE/package.json#L1-L80)).
-  - **Dil:** `TypeScript`.
+# 📖 Overview
 
-**Önemli Dosyalar / Konumlar**
+Car Rental Solution is a full-stack vehicle rental management system consisting of a **React Native mobile application** and an **ASP.NET Core Web API** following the **N-Tier Architecture**.
 
-- API giriş noktası: [CarRentalProject/WebApi/Program.cs](CarRentalProject/WebApi/Program.cs)
-- API proje dosyası: [CarRentalProject/WebApi/WebAPI.csproj](CarRentalProject/WebApi/WebAPI.csproj#L1-L80)
-- Veritabanı scripti: [CarRentalProject/databaseSQL.sql](CarRentalProject/databaseSQL.sql)
-- Frontend bağımlılıkları: [CarRental-FE/package.json](CarRental-FE/package.json#L1-L80)
-- Frontend API konfigürasyonu: [CarRental-FE/constants/api.ts](CarRental-FE/constants/api.ts#L1-L200)
+The project enables users to browse vehicles, make reservations, manage customer information, and securely authenticate using JWT. The backend exposes RESTful APIs while the mobile application provides a modern cross-platform user experience.
 
-**Nasıl Çalıştırılır (Geliştirici Rehberi)**
+---
 
-- Backend (API):
-  1. Önkoşullar: `dotnet 6 SDK` kurulu olmalı.
-  2. Veritabanı ve bağlantı dizelerini ayarlayın: `CarRentalProject/WebApi/appsettings.json` veya `appsettings.Development.json` içinde `ConnectionStrings` bölümünü güncelleyin (varsayılan dosyaları kontrol edin).
-  3. Veritabanı scriptini çalıştırın (varsa): `CarRentalProject/databaseSQL.sql` içerisindeki tabloları/seed verilerini hedef veritabanınıza uygulayın.
-  4. Projeyi derleyip çalıştırın:
+# ✨ Features
 
-```powershell
+- 🔐 JWT Authentication & Authorization
+- 🚘 Vehicle Management
+- 📅 Reservation Management
+- 👤 Customer Management
+- 📱 Cross-platform Mobile Application (Android & iOS)
+- 🏗 N-Tier Architecture
+- 📄 Swagger API Documentation
+- ⚙ Background Job Processing with Hangfire
+- 📝 Structured Logging using Serilog
+
+---
+
+# 🏗 System Architecture
+
+```
+               React Native (Expo)
+
+                       │
+                    Axios API
+
+                       │
+
+             ASP.NET Core Web API
+
+                       │
+
+        ┌──────────────┴──────────────┐
+
+            Business Layer
+
+                  │
+
+              Data Access
+
+                  │
+
+          Entity Framework Core
+
+                  │
+
+             SQL Server Database
+```
+
+The backend is organized into the following layers:
+
+- Business
+- Core
+- DataAccess
+- Entities
+- WebAPI
+
+This separation improves maintainability, scalability, and testability.
+
+---
+
+# 🛠 Tech Stack
+
+## Backend
+
+- ASP.NET Core 6
+- C#
+- Entity Framework Core
+- SQL Server
+- JWT Authentication
+- Hangfire
+- Serilog
+- Swagger / OpenAPI
+
+## Mobile
+
+- React Native
+- Expo SDK
+- TypeScript
+- Redux Toolkit
+- React Redux
+- Axios
+- React Native Paper
+- Expo Router
+
+---
+
+# 📂 Project Structure
+
+```
+CarRentalSolution
+│
+├── CarRentalProject
+│   ├── Business
+│   ├── Core
+│   ├── DataAccess
+│   ├── Entities
+│   └── WebApi
+│
+├── CarRental-FE
+│   ├── app
+│   ├── assets
+│   ├── components
+│   ├── constants
+│   ├── store
+│   └── hooks
+│
+└── README.md
+```
+
+---
+
+# 🚀 Getting Started
+
+## Clone Repository
+
+```bash
+git clone https://github.com/yourusername/CarRentalSolution.git
+
+cd CarRentalSolution
+```
+
+---
+
+# ⚙ Backend Setup
+
+## 1. Restore Packages
+
+```bash
 dotnet restore
+```
+
+## 2. Configure Database
+
+Open
+
+```
+CarRentalProject/WebApi/appsettings.json
+```
+
+Update the connection string.
+
+Example:
+
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "YOUR_SQL_SERVER_CONNECTION"
+}
+```
+
+---
+
+## 3. Create Database
+
+Run the SQL script:
+
+```
+CarRentalProject/databaseSQL.sql
+```
+
+---
+
+## 4. Run API
+
+```bash
 dotnet build
+
 dotnet run --project CarRentalProject/WebApi
 ```
 
-- Not: Hangfire için depo/konfigürasyon ayarları projede `Hangfire.PostgreSql` paketinin varlığını gösteriyor; Hangfire iş kuyruğu için ayrı bir PostgreSQL konfigürasyonu kullanılıyor olabilir. `appsettings` ve `Extensions` klasörünü kontrol edin.
+Swagger UI
 
-- Frontend (Expo/React Native):
-  1. Önkoşullar: `Node.js` ve `npm` veya `yarn` kurulu olmalı, ayrıca `expo` kullanmak için sistem gereksinimlerini sağlayın.
-  2. Frontend klasörüne gidin ve paketleri yükleyin:
+```
+https://localhost:5001/swagger
+```
+
+---
+
+# 📱 Frontend Setup
+
+Navigate to the frontend folder.
 
 ```bash
 cd CarRental-FE
-npm install
-# veya: yarn install
 ```
 
-3. Uygulamayı başlatın:
+Install dependencies.
 
 ```bash
-npm run start
-# veya: expo start
+npm install
 ```
 
-4. API adresi/temel URL: Frontend, API çağrılarını `CarRental-FE/constants/api.ts` dosyasında tanımlanmış `baseUrl` vb. üzerinden yapar — geliştirme/test için backend çalışır durumda iken burada gerekli URL ve portu ayarlayın.
+Run the application.
 
-**Proje Yapısı (Kısa Özet)**
+```bash
+npm start
+```
 
-- `CarRental-FE/` — Mobil uygulama; `app/`, `components/`, `constants/`, `store/` gibi klasörler içerir.
-- `CarRentalProject/` — Çözüm dosyası ve katmanlı backend projeleri: `Business/`, `Core/`, `DataAccess/`, `Entities/`, `WebApi/`.
+or
 
-**Öneriler & Notlar**
+```bash
+expo start
+```
 
-- Geliştirme ortamında önce backend'i çalıştırıp API uç noktalarının (`Swagger`) çalıştığından emin olun; Swagger genellikle `https://localhost:<port>/swagger` altında bulunur.
-- Auth (JWT) yapısı varsa, `appsettings` içinde JWT parametrelerini (Issuer, Key, Audience) doğru ayarlayın.
-- Loglama için `Serilog` kullanılmış; konfigürasyon `appsettings` ve/veya kod tarafında yer alır.
-- Eğer Hangfire kullanımı aktifse, Hangfire dashboard ve depolama ayarlarını kontrol edin (PostgreSQL bağlantısı olabilir).
+Update the backend API URL inside:
 
-**Yardım / Geliştirme İpuçları**
+```
+constants/api.ts
+```
 
-- API tarafında değişiklik yaparken `Business` ve `DataAccess` katmanlarında interface ve DTO uyumluluğuna dikkat edin.
-- Frontend tarafında global API değişiklikleri yapıldığında `CarRental-FE/constants/api.ts` ve `store/` içindeki async thunks/servis çağrılarını güncelleyin.
+---
 
-Eğer isterseniz, README'yi daha da genişletebilirim: örnek .env şablonu, sık kullanılan API uç noktalarının listesi, veya adım adım veritabanı kurulum talimatları ekleyebilirim.
+# 🔐 Authentication
+
+The backend uses **JWT Bearer Authentication**.
+
+Configure the following values inside:
+
+```
+appsettings.json
+```
+
+- Issuer
+- Audience
+- Secret Key
+
+---
+
+# 📊 Background Jobs
+
+The application uses **Hangfire** for background processing.
+
+Typical use cases include:
+
+- Scheduled jobs
+- Email notifications
+- Maintenance tasks
+
+---
+
+# 📝 Logging
+
+Application logs are generated using **Serilog**.
+
+Logging configuration is available through:
+
+```
+appsettings.json
+```
+
+---
+
+# 📸 Screenshots
+
+> Screenshots will be added soon.
+
+```
+docs/
+
+├── login.png
+
+├── home.png
+
+├── vehicle-details.png
+
+└── reservation.png
+```
+
+Example:
+
+```markdown
+![Login](docs/login.png)
+
+![Home](docs/home.png)
+```
+
+---
+
+# 🔄 Application Flow
+
+```
+User
+
+↓
+
+Login
+
+↓
+
+JWT Authentication
+
+↓
+
+REST API Request
+
+↓
+
+Business Layer
+
+↓
+
+Data Access Layer
+
+↓
+
+SQL Server
+
+↓
+
+API Response
+
+↓
+
+Mobile Application
+```
+
+---
+
+# 📌 Sample API Endpoints
+
+| Method | Endpoint               | Description        |
+| ------ | ---------------------- | ------------------ |
+| POST   | /api/auth/login        | User Login         |
+| POST   | /api/auth/register     | Register User      |
+| GET    | /api/vehicles          | Get Vehicles       |
+| GET    | /api/vehicles/{id}     | Vehicle Details    |
+| POST   | /api/reservations      | Create Reservation |
+| PUT    | /api/reservations/{id} | Update Reservation |
+
+---
+
+# 🚀 Future Improvements
+
+- Docker Support
+- CI/CD Pipeline
+- Unit Tests
+- Integration Tests
+- Redis Cache
+- Push Notifications
+- Payment Integration
+- Role-Based Authorization
+
+---
+
+# 👨‍💻 Developer
+
+**Hidayet Çiftçi**
+
+Backend & Mobile Developer
+
+### Technologies
+
+- ASP.NET Core
+- C#
+- Entity Framework Core
+- SQL Server
+- React Native
+- Expo
+- Redux Toolkit
+- TypeScript
+
+---
+
+# 📄 License
+
+This repository is published for **portfolio and educational purposes**.
